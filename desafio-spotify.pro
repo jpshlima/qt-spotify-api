@@ -1,6 +1,10 @@
 QT       += core gui
+QT       += network networkauth
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+TARGET = oauth
+TEMPLATE = app
 
 CONFIG += c++11
 
@@ -20,6 +24,7 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    clientid.h \
     mainwindow.h
 
 FORMS += \
