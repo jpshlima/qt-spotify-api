@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QOAuth2AuthorizationCodeFlow>
+#include "Spotify.h"
+#include <QNetworkAccessManager>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,11 +20,16 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-    void onFinish(QNetworkReply*);
+
+    //void login();
+
+
+    //void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QNetworkAccessManager *manager;
+    Spotify spotify;
+    //QNetworkAccessManager *manager;
     //QNetworkRequest request;
 
 };

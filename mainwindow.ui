@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>679</width>
+    <height>471</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,14 +17,37 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>10</y>
-      <width>91</width>
-      <height>41</height>
+      <x>100</x>
+      <y>310</y>
+      <width>201</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="text">
      <string>Iniciar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>310</y>
+      <width>201</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Search track</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="teOutput">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>10</y>
+      <width>621</width>
+      <height>291</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -33,7 +56,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>679</width>
      <height>21</height>
     </rect>
    </property>
