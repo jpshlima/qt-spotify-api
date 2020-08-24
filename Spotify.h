@@ -18,9 +18,9 @@ public:
     ~Spotify();
     //spotify(const spotify &other);
     void login();
-    QString get_token();
-    /*void search_track();
-    void add_track();
+    QString getToken();
+    void searchTrack();
+    /*void add_track();
     void remove_track();
     void show_my_playlists();
     void add_playlist();
@@ -32,9 +32,8 @@ public:
 
 private slots:
 
-
-   void onFinish(QNetworkReply*);
-
+    void onFinish(QNetworkReply*);
+    void trackSearched(QNetworkReply*);
 
 private:
     QString token;

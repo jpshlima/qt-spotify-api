@@ -67,7 +67,62 @@ void Spotify::onFinish(QNetworkReply* rep)
 
 }
 
-QString Spotify::get_token()
+QString Spotify::getToken()
 {
     return token;
+}
+
+
+void Spotify::searchTrack()
+{
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+    // Inicia o processo para a request GET
+    QUrl url("https://api.spotify.com/v1/search");
+    // Vamos descrever os parametros da query GET
+    QUrlQuery params;
+    params.addQueryItem("q", "queen");
+    params.addQueryItem("type", "track");
+    params.addQueryItem("limit", "10");
+    url.setQuery(params);
+
+    QNetworkRequest request(url);
+    QByteArray header = "Bearer " + token.toUtf8();
+    qDebug() << header;
+    request.setRawHeader("Accept", "application/json");
+
+    //request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader("Authorization", header);
+
+
+    qDebug() << url.toString();
+    connect(manager, &QNetworkAccessManager::finished,this,&Spotify::trackSearched);
+    QNetworkReply *reply = manager->get(request);
+    qDebug() << reply;
+
+}
+
+void Spotify::trackSearched(QNetworkReply* rep)
+{
+    /*
+    if(rep->error() == QNetworkReply::NoError)
+    {
+
+        // check http status code
+        int v = rep->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        if(v!=200)
+        {
+            abort();
+            qDebug() << "bad request!";
+        }
+    }
+    */
+    // vamos ler o conteúdo da resposta da pesquisa GET
+    QByteArray buffer = rep->readAll();
+    qDebug() << buffer;
+    // transforma o que foi lido em QJSON object
+    QJsonDocument jsonDoc(QJsonDocument::fromJson(buffer));
+    QJsonObject jsonReply = jsonDoc.object();
+    //ui->teOutput->appendPlainText(buffer);
+    qDebug() << jsonReply;
 }

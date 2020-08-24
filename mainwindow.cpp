@@ -32,6 +32,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QString authtoken = spotify.get_token();
+    QString authtoken = spotify.getToken();
     ui->teOutput->appendPlainText(authtoken);
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    spotify.searchTrack();
 }
