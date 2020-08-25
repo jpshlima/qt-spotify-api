@@ -1,12 +1,14 @@
 #include "Spotify.h"
 #include "clientid.h"
-
+#include "track.h"
 
 #include <QDebug>
 #include <QNetworkAccessManager>
 #include <QtNetworkAuth>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonValue>
+#include <QJsonArray>
 
 Spotify::Spotify(){
 
@@ -119,10 +121,48 @@ void Spotify::trackSearched(QNetworkReply* rep)
     */
     // vamos ler o conteúdo da resposta da pesquisa GET
     QByteArray buffer = rep->readAll();
-    qDebug() << buffer;
+    //qDebug() << buffer;
     // transforma o que foi lido em QJSON object
     QJsonDocument jsonDoc(QJsonDocument::fromJson(buffer));
-    QJsonObject jsonReply = jsonDoc.object();
+    QJsonObject jsonObj = jsonDoc.object();
     //ui->teOutput->appendPlainText(buffer);
-    qDebug() << jsonReply;
+    //qDebug() << jsonReply;
+    //this->searchResult() = jsonReply;
+    getTracksFromSearch(jsonObj);
+}
+
+void Spotify::getTracksFromSearch(QJsonObject search)
+{
+    // Vamos fazer o parsing do JSON obtido para objetos tracks
+    //qDebug() << search;
+    QJsonObject jsonObj = search["tracks"].toObject();
+    //qDebug() << jsonObj;
+    // Extrai o conteúdo em um array
+    QJsonArray array = jsonObj["items"].toArray();
+    qDebug() << array;
+
+    //track track;
+    QList<track> data;
+    int i=0;
+    int j=0;
+    for(i=0; i<array.size(); i++)
+    {
+        track track;
+        QJsonObject temp = array[i].toObject();
+        QJsonObject albumInfo = temp["album"].toObject();
+        QJsonArray artistArray = temp["artists"].toArray();
+        for(j=0; j<artistArray.size(); j++)
+        {
+            QJsonObject artistInfo = artistArray[j].toObject();
+            track.artist.append(artistInfo["name"].toString());
+        }
+        track.album = albumInfo["name"].toString();
+        track.name = temp["name"].toString();
+        track.id = temp["id"].toString();
+        data.append(track);
+    }
+    //qDebug() << data[9].name;
+    //qDebug() << data[9].id;
+    //qDebug() << data[0].album;
+    qDebug() << data[8].artist;
 }

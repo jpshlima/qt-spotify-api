@@ -20,6 +20,7 @@ public:
     void login();
     QString getToken();
     void searchTrack();
+    void getTracksFromSearch(QJsonObject);
     /*void add_track();
     void remove_track();
     void show_my_playlists();
@@ -38,8 +39,8 @@ private slots:
 private:
     QString token;
     QNetworkAccessManager *manager;
-    /*QJsonArray search_result;
-    QArrayData playlists;
+    //QJsonObject searchResult();
+    /*QArrayData playlists;
     */
 
 };

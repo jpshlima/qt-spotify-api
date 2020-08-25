@@ -22,12 +22,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     Spotify.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    playlist.cpp \
+    track.cpp
 
 HEADERS += \
     Spotify.h \
     clientid.h \
-    mainwindow.h
+    mainwindow.h \
+    playlist.h \
+    track.h
 
 FORMS += \
     mainwindow.ui
