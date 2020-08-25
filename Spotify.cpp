@@ -82,14 +82,14 @@ void Spotify::searchTrack()
     QUrl url("https://api.spotify.com/v1/search");
     // Vamos descrever os parametros da query GET
     QUrlQuery params;
-    params.addQueryItem("q", "queen");
+    params.addQueryItem("q", "nada sera como antes");
     params.addQueryItem("type", "track");
     params.addQueryItem("limit", "10");
     url.setQuery(params);
 
     QNetworkRequest request(url);
     QByteArray header = "Bearer " + token.toUtf8();
-    qDebug() << header;
+    //qDebug() << header;
     request.setRawHeader("Accept", "application/json");
 
     //request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -97,10 +97,10 @@ void Spotify::searchTrack()
     request.setRawHeader("Authorization", header);
 
 
-    qDebug() << url.toString();
+    //qDebug() << url.toString();
     connect(manager, &QNetworkAccessManager::finished,this,&Spotify::trackSearched);
     QNetworkReply *reply = manager->get(request);
-    qDebug() << reply;
+    //qDebug() << reply;
 
 }
 
@@ -128,18 +128,13 @@ void Spotify::trackSearched(QNetworkReply* rep)
     //ui->teOutput->appendPlainText(buffer);
     //qDebug() << jsonReply;
     //this->searchResult() = jsonReply;
-    getTracksFromSearch(jsonObj);
-}
-
-void Spotify::getTracksFromSearch(QJsonObject search)
-{
     // Vamos fazer o parsing do JSON obtido para objetos tracks
     //qDebug() << search;
-    QJsonObject jsonObj = search["tracks"].toObject();
+    QJsonObject jsonObj2 = jsonObj["tracks"].toObject();
     //qDebug() << jsonObj;
     // Extrai o conteúdo em um array
-    QJsonArray array = jsonObj["items"].toArray();
-    qDebug() << array;
+    QJsonArray array = jsonObj2["items"].toArray();
+    //qDebug() << array;
 
     //track track;
     QList<track> data;
@@ -164,5 +159,54 @@ void Spotify::getTracksFromSearch(QJsonObject search)
     //qDebug() << data[9].name;
     //qDebug() << data[9].id;
     //qDebug() << data[0].album;
-    qDebug() << data[8].artist;
+    //qDebug() << data[8].artist;
+    this->searchResult = data;
+
+
+
+    //getTracksFromSearch(jsonObj);
+}
+/*
+void Spotify::getTracksFromSearch(QJsonObject search)
+{
+    // Vamos fazer o parsing do JSON obtido para objetos tracks
+    //qDebug() << search;
+    QJsonObject jsonObj = search["tracks"].toObject();
+    //qDebug() << jsonObj;
+    // Extrai o conteúdo em um array
+    QJsonArray array = jsonObj["items"].toArray();
+    //qDebug() << array;
+
+    //track track;
+    QList<track> data;
+    int i=0;
+    int j=0;
+    for(i=0; i<array.size(); i++)
+    {
+        track track;
+        QJsonObject temp = array[i].toObject();
+        QJsonObject albumInfo = temp["album"].toObject();
+        QJsonArray artistArray = temp["artists"].toArray();
+        for(j=0; j<artistArray.size(); j++)
+        {
+            QJsonObject artistInfo = artistArray[j].toObject();
+            track.artist.append(artistInfo["name"].toString());
+        }
+        track.album = albumInfo["name"].toString();
+        track.name = temp["name"].toString();
+        track.id = temp["id"].toString();
+        data.append(track);
+    }
+    //qDebug() << data[9].name;
+    //qDebug() << data[9].id;
+    //qDebug() << data[0].album;
+    //qDebug() << data[8].artist;
+    this->searchResult = data;
+}
+*/
+QList<track> Spotify::getSearch()
+{
+    //searchTrack();
+    //emit onFinish()
+    return searchResult;
 }

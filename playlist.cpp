@@ -2,7 +2,7 @@
 #include "track.h"
 
 
-playlist::playlist(QString namePlaylist, QArrayData playlistTracks)
+playlist::playlist(QString namePlaylist)
 {
     this->namePlaylist = namePlaylist;
     //this->playlistTracks = playlistTracks;

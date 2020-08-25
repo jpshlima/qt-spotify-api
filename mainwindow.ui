@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>679</width>
-    <height>471</height>
+    <width>918</width>
+    <height>574</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>310</y>
-      <width>201</width>
-      <height>91</height>
+      <x>50</x>
+      <y>10</y>
+      <width>181</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
@@ -30,10 +30,10 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>310</y>
-      <width>201</width>
-      <height>91</height>
+      <x>50</x>
+      <y>100</y>
+      <width>181</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
@@ -43,11 +43,43 @@
    <widget class="QPlainTextEdit" name="teOutput">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>250</x>
       <y>10</y>
-      <width>621</width>
-      <height>291</height>
+      <width>661</width>
+      <height>51</height>
      </rect>
+    </property>
+    <property name="plainText">
+     <string/>
+    </property>
+    <property name="overwriteMode">
+     <bool>false</bool>
+    </property>
+    <property name="centerOnScroll">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>80</y>
+      <width>661</width>
+      <height>431</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>190</y>
+      <width>181</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Show results</string>
     </property>
    </widget>
   </widget>
@@ -56,7 +88,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>679</width>
+     <width>918</width>
      <height>21</height>
     </rect>
    </property>

@@ -7,6 +7,7 @@
 #include <QJsonObject>
 #include "clientid.h"
 #include "Spotify.h"
+#include <QThread>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -15,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     , spotify()
 {
     ui->setupUi(this);
+
     //Spotify spotify;
     spotify.login();
     /*QString authtoken = spotify->get_token();
@@ -40,4 +42,25 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     spotify.searchTrack();
+    //track track0 = searchResults.takeFirst();
+    //qDebug() << track0.name;
+    //QString trackname = track0.name;
+    //ui->listWidget->addItem(trackname);
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QList<track> results = spotify.getSearch();
+    qDebug() << results.isEmpty();
+    int i=0;
+    for(i=0; i<results.size();i++)
+    {
+        QString trackname = results[i].name;
+        QString trackalbum = results[i].album;
+        QString trackartist = results[i].artist;
+        //qDebug() << trackname;
+        QString listItem = trackname + " | " + trackartist + " | " + trackalbum;
+        ui->listWidget->addItem(listItem);
+    }
 }

@@ -13,7 +13,7 @@ class playlist : public QObject
     Q_OBJECT
 
 public:
-    playlist(QString namePlaylist, QArrayData playlistTracks);
+    playlist(QString namePlaylist);
     ~playlist();
    //void getTrack(track);
 
@@ -24,7 +24,7 @@ private slots:
 
 private:
     QString namePlaylist;
-    QArrayData playlistTracks;
+   // QArrayData playlistTracks;
 
 };
 
