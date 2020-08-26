@@ -32,14 +32,14 @@ MainWindow::~MainWindow()
     //delete manager;
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_iniciarButton_clicked()
 {
     QString authtoken = spotify.getToken();
     //ui->teOutput->appendPlainText(authtoken);
 }
 
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_searchButton_clicked()
 {
     QString searchInput;
     searchInput = ui->teOutput->toPlainText();
@@ -52,7 +52,7 @@ void MainWindow::on_pushButton_2_clicked()
 }
 
 
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_showResultsButton_clicked()
 {
     // Primeiro, limpa a listWidget
     ui->listWidget->clear();

@@ -20,16 +20,16 @@ public:
 
 
 private slots:
-    void on_pushButton_clicked();
+    void on_iniciarButton_clicked();
 
     //void login();
 
 
     //void on_pushButton_2_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_searchButton_clicked();
 
-    void on_pushButton_3_clicked();
+    void on_showResultsButton_clicked();
 
     void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 
