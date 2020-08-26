@@ -19,7 +19,7 @@ public:
     //spotify(const spotify &other);
     void login();
     QString getToken();
-    void searchTrack();
+    void searchTrack(QString);
     //void getTracksFromSearch(QJsonObject);
     QList<track> getSearch();
     QList<track> searchResult;

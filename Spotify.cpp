@@ -75,14 +75,14 @@ QString Spotify::getToken()
 }
 
 
-void Spotify::searchTrack()
+void Spotify::searchTrack(QString searchInput)
 {
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
     // Inicia o processo para a request GET
     QUrl url("https://api.spotify.com/v1/search");
     // Vamos descrever os parametros da query GET
     QUrlQuery params;
-    params.addQueryItem("q", "nada sera como antes");
+    params.addQueryItem("q", searchInput);
     params.addQueryItem("type", "track");
     params.addQueryItem("limit", "10");
     url.setQuery(params);

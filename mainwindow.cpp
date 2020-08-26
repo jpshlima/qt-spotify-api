@@ -35,13 +35,16 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     QString authtoken = spotify.getToken();
-    ui->teOutput->appendPlainText(authtoken);
+    //ui->teOutput->appendPlainText(authtoken);
 }
 
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    spotify.searchTrack();
+    QString searchInput;
+    searchInput = ui->teOutput->toPlainText();
+    qDebug() << searchInput;
+    spotify.searchTrack(searchInput);
     //track track0 = searchResults.takeFirst();
     //qDebug() << track0.name;
     //QString trackname = track0.name;
@@ -51,8 +54,12 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
+    // Primeiro, limpa a listWidget
+    ui->listWidget->clear();
+    // Vamos mostrar o resultado da pesquisa na lista
     QList<track> results = spotify.getSearch();
-    qDebug() << results.isEmpty();
+    //qDebug() << results.isEmpty();
+    // Varrer a QList obtida com um loop
     int i=0;
     for(i=0; i<results.size();i++)
     {
@@ -63,4 +70,12 @@ void MainWindow::on_pushButton_3_clicked()
         QString listItem = trackname + " | " + trackartist + " | " + trackalbum;
         ui->listWidget->addItem(listItem);
     }
+}
+
+void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
+{
+    int row = ui->listWidget->row(item);
+    qDebug() << row;
+    track selectedTrack = spotify.searchResult[row];
+    qDebug() << selectedTrack.name;
 }
