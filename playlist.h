@@ -8,23 +8,27 @@ namespace Ui { class playlist; }
 QT_END_NAMESPACE
 
 
-class playlist : public QObject
+class playlist
 {
-    Q_OBJECT
+
 
 public:
-    playlist(QString namePlaylist);
+    playlist();
     ~playlist();
-   //void getTrack(track);
-
+    void addTrack(track);
+    void removeTrack(int);
+    void setPlaylistName(QString);
+    //QList<track> getPlaylist();
+    QString playlistName;
+    QList<track> playlistTracks;
 
 private slots:
 
 
 
 private:
-    QString namePlaylist;
-   // QArrayData playlistTracks;
+
+
 
 };
 

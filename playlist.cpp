@@ -2,11 +2,11 @@
 #include "track.h"
 
 
-playlist::playlist(QString namePlaylist)
+playlist::playlist()
 {
-    this->namePlaylist = namePlaylist;
-    //this->playlistTracks = playlistTracks;
-
+    QString newPlaylist = "new_playlist";
+    this->playlistName = newPlaylist;
+    //allPlaylists.append();
 }
 
 playlist::~playlist()
@@ -14,3 +14,26 @@ playlist::~playlist()
 
 }
 
+
+void playlist::setPlaylistName(QString playlistName)
+{
+    this->playlistName = playlistName;
+}
+
+
+/*
+QList<track> playlist::getPlaylist()
+{
+    return playlistTracks;
+}
+
+void playlist::addTrack(track selectedTrack)
+{
+    this->playlistTracks.append(selectedTrack);
+}
+
+void playlist::removeTrack(int index)
+{
+    this->playlistTracks.removeAt(index);
+}
+*/

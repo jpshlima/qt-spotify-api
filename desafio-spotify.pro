@@ -24,6 +24,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     playlist.cpp \
+    playlistManager.cpp \
     track.cpp
 
 HEADERS += \
@@ -31,6 +32,7 @@ HEADERS += \
     clientid.h \
     mainwindow.h \
     playlist.h \
+    playlistManager.h \
     track.h
 
 FORMS += \

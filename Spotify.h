@@ -4,6 +4,8 @@
 //#include <QMainWindow>
 #include <QNetworkAccessManager>
 #include "track.h"
+#include "playlist.h"
+#include "playlistManager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Spotify; }
@@ -16,22 +18,11 @@ class Spotify : public QObject
 public:
     Spotify();
     ~Spotify();
-    //spotify(const spotify &other);
     void login();
     QString getToken();
     void searchTrack(QString);
-    //void getTracksFromSearch(QJsonObject);
     QList<track> getSearch();
     QList<track> searchResult;
-    /*void add_track();
-    void remove_track();
-    void show_my_playlists();
-    void add_playlist();
-    void remove_playlist();
-    void play_track();
-    */
-
-
 
 private slots:
 
@@ -41,9 +32,6 @@ private slots:
 private:
     QString token;
     QNetworkAccessManager *manager;
-    //QList<track> searchResult;
-    /*QArrayData playlists;
-    */
 
 };
 

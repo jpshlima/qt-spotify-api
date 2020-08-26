@@ -33,7 +33,6 @@ void track::setTrackId(QString trackId)
 /*
 void track::getTrack(track)
 {
-    this->name =
-    this->album =
+
 }
 */

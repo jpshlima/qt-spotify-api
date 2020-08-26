@@ -18,8 +18,8 @@ class track
 public:
     track();
     ~track();
-   //void getTrack(track);
-    /*void setTrackName(QString);
+    /*void getTrack(track);
+    void setTrackName(QString);
     void setTrackAlbum(QString);
     void setTrackArtist(QString);
     void setTrackId(QString);
