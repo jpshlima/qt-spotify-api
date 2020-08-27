@@ -149,14 +149,16 @@ void Spotify::trackSearched(QNetworkReply* rep)
         QJsonObject temp = array[i].toObject();
         QJsonObject albumInfo = temp["album"].toObject();
         QJsonArray artistArray = temp["artists"].toArray();
+        QStringList artistName;
         for(j=0; j<artistArray.size(); j++)
         {
             QJsonObject artistInfo = artistArray[j].toObject();
-            track.artist.append(artistInfo["name"].toString());
+            artistName.append(artistInfo["name"].toString());
         }
-        track.album = albumInfo["name"].toString();
-        track.name = temp["name"].toString();
-        track.id = temp["id"].toString();
+        track.setTrackArtist(artistName);
+        track.setTrackAlbum(albumInfo["name"].toString());
+        track.setTrackName(temp["name"].toString());
+        track.setTrackId(temp["id"].toString());
 
         data.append(track);
     }

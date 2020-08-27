@@ -71,11 +71,11 @@ void MainWindow::showTracksOnScreen(QList<track> trackList)
         int i=0;
         for(i=0; i<trackList.size();i++)
         {
-            QString trackname = trackList[i].name;
-            QString trackalbum = trackList[i].album;
-            QString trackartist = trackList[i].artist;
+            QString trackname = trackList[i].getTrackName();
+            QString trackalbum = trackList[i].getTrackAlbum();
+            QString trackartist = trackList[i].getTrackArtist();
             //qDebug() << trackname;
-            QString listItem = trackname + " | " + trackartist + " | " + trackalbum;
+            QString listItem = trackname + " || " + trackartist + " || " + trackalbum;
             ui->listWidget->addItem(listItem);
         }
     }
@@ -147,7 +147,7 @@ void MainWindow::on_auxListWidget_itemDoubleClicked(QListWidgetItem *item)
     // Double click na playlist para exibir suas tracks na tela principal
     int row = ui->auxListWidget->row(item);
     playlist playlist = playlistManager.allPlaylists[row];
-    showTracksOnScreen(playlist.playlistTracks);
+    showTracksOnScreen(playlist.getPlaylistTracks());
 }
 
 void MainWindow::on_addTrackButton_clicked()
@@ -158,7 +158,7 @@ void MainWindow::on_addTrackButton_clicked()
     int row = ui->listWidget->currentRow();
     //qDebug() << row;
     // Criamos o objeto track com as informações selecionadas
-    track selectedTrack = spotify.searchResult[row];
+    track selectedTrack = spotify.getSearch()[row];
     //qDebug() << selectedTrack.name;
     // Recebe a row da playlist atualmente selecionada
     int selectedPlaylist = ui->auxListWidget->currentRow();
@@ -179,7 +179,7 @@ void MainWindow::on_removeTrackButton_clicked()
     // Vamos atualizar a tela para mostrar a playlist já atualizada
     ui->listWidget->clear();
     playlist playlist = playlistManager.allPlaylists[selectedPlaylist];
-    showTracksOnScreen(playlist.playlistTracks);    
+    showTracksOnScreen(playlist.getPlaylistTracks());
 }
 
 void MainWindow::on_deletePlaylistButton_clicked()
@@ -194,5 +194,7 @@ void MainWindow::on_deletePlaylistButton_clicked()
         int selectedPlaylist = ui->auxListWidget->currentRow();
         playlistManager.deletePlaylist(selectedPlaylist);
         refreshAuxListWidget();
+        ui->listWidget->clear();
     }
+
 }

@@ -12,7 +12,6 @@ playlist::~playlist()
 
 }
 
-
 void playlist::setPlaylistName(QString playlistName)
 {
     this->playlistName = playlistName;
@@ -30,16 +29,11 @@ void playlist::removeTrack(int index)
 
 QString playlist::getPlaylistName()
 {
-    return playlistName;
+    return this->playlistName;
 }
 
-/*
-QList<track> playlist::getPlaylist()
+QList<track> playlist::getPlaylistTracks()
 {
-    return playlistTracks;
+    return this->playlistTracks;
 }
 
-
-
-
-*/

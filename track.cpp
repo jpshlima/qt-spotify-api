@@ -9,30 +9,53 @@ track::~track()
 {
     //delete track;
 }
-/*
+
 void track::setTrackName(QString name)
 {
-    this->name = name;
+    this->trackName = name;
+}
+
+QString track::getTrackName()
+{
+    return this->trackName;
 }
 
 void track::setTrackAlbum(QString album)
 {
-    this->album = album;
+    this->trackAlbum = album;
 }
 
-void track::setTrackArtist(QString artist)
+QString track::getTrackAlbum()
 {
-    this->artist = artist;
+    return this->trackAlbum;
+}
+
+void track::setTrackArtist(QStringList artist)
+{
+    this->trackArtist = artist;
+}
+
+QString track::getTrackArtist()
+{
+    QString artist;
+    if(this->trackArtist.size()!=1)
+    {
+        artist = trackArtist.join(" + ");
+    }
+    else
+    {
+        artist = this->trackArtist.at(0);
+    }
+    return artist;
 }
 
 void track::setTrackId(QString trackId)
 {
-    this->id = trackId;
+    this->trackId = trackId;
 }
-*/
-/*
-void track::getTrack(track)
-{
 
+QString track::getTrackId()
+{
+    return this->trackId;
 }
-*/
+

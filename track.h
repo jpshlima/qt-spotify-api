@@ -18,22 +18,27 @@ class track
 public:
     track();
     ~track();
-    /*void getTrack(track);
+    //void getTrack(track);
     void setTrackName(QString);
+    QString getTrackName();
     void setTrackAlbum(QString);
-    void setTrackArtist(QString);
+    QString getTrackAlbum();
     void setTrackId(QString);
-    */
-    QString name;
-    QString album;
-    QByteArray artist;
-    QString id;
+    QString getTrackId();
+    void setTrackArtist(QStringList);
+    QString getTrackArtist();
+
+
 
 private slots:
 
 
 
 private:
+    QString trackName;
+    QString trackAlbum;
+    QStringList trackArtist;
+    QString trackId;
     /*
     QString name;
     QString album;

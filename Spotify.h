@@ -22,7 +22,7 @@ public:
     QString getToken();
     void searchTrack(QString);
     QList<track> getSearch();
-    QList<track> searchResult;
+
 
 private slots:
 
@@ -32,6 +32,7 @@ private slots:
 private:
     QString token;
     QNetworkAccessManager *manager;
+    QList<track> searchResult;
 
 };
 
