@@ -105,7 +105,7 @@ void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
 
 }
 
-/*
+
 void MainWindow::on_renamePlaylistButton_clicked()
 {
     // Usa um InputDialog para obter o novo nome da playlist
@@ -113,6 +113,8 @@ void MainWindow::on_renamePlaylistButton_clicked()
     // Recebe a row da playlist atualmente selecionada
     int selectedPlaylist = ui->auxListWidget->currentRow();
     playlistManager.renamePlaylist(playlistName, selectedPlaylist);
+    // Mostra as playlists já atualizadas
+    ui->auxListWidget->clear();
     // Inicializa as playlists na tela auxiliar
     int i=0;
     if(playlistManager.allPlaylists.isEmpty())
@@ -129,7 +131,7 @@ void MainWindow::on_renamePlaylistButton_clicked()
         }
     }
 }
-*/
+
 
 void MainWindow::on_newPlaylistButton_clicked()
 {

@@ -17,7 +17,7 @@ public:
     void appendPlaylist(playlist);
     void addTrackToPlaylist(track, int);
     void removeTrackFromPlaylist(int, int);
-    //void renamePlaylist(QString, int);
+    void renamePlaylist(QString, int);
 
 private slots:
 

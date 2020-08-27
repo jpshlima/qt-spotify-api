@@ -17,8 +17,8 @@ void playlistManager::removeTrackFromPlaylist(int trackIndex, int playlistIndex)
     allPlaylists[playlistIndex].removeTrack(trackIndex);
 }
 
-/*void playlistManager::renamePlaylist(QString newName, int playlistIndex)
+void playlistManager::renamePlaylist(QString newName, int playlistIndex)
 {
     allPlaylists[playlistIndex].setPlaylistName(newName);
 }
-*/
+
