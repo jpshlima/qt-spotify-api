@@ -29,11 +29,15 @@ private slots:
 
     void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 
-    //void on_editPlaylistTracksButton_clicked();
+    //void on_renamePlaylistButton_clicked();
 
     void on_newPlaylistButton_clicked();
 
     void on_auxListWidget_itemDoubleClicked(QListWidgetItem *item);
+
+    void on_addTrackButton_clicked();
+
+    void on_removeTrackButton_clicked();
 
 private:
     Ui::MainWindow *ui;

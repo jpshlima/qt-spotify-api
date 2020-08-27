@@ -82,7 +82,7 @@
      <string>Show results</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="editPlaylistTracksButton">
+   <widget class="QPushButton" name="renamePlaylistButton">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -92,8 +92,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Edit playlist
- tracks</string>
+     <string>Rename playlist</string>
     </property>
    </widget>
    <widget class="QPushButton" name="newPlaylistButton">
@@ -117,6 +116,32 @@
       <width>191</width>
       <height>581</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addTrackButton">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>1000</y>
+      <width>191</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add track</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="removeTrackButton">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>1000</y>
+      <width>191</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Remove track</string>
     </property>
    </widget>
   </widget>
