@@ -39,6 +39,8 @@ private slots:
 
     void on_removeTrackButton_clicked();
 
+    void on_deletePlaylistButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Spotify spotify;

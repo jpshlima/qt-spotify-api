@@ -22,3 +22,7 @@ void playlistManager::renamePlaylist(QString newName, int playlistIndex)
     allPlaylists[playlistIndex].setPlaylistName(newName);
 }
 
+void playlistManager::deletePlaylist(int playlistIndex)
+{
+    allPlaylists.removeAt(playlistIndex);
+}

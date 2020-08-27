@@ -144,6 +144,19 @@
      <string>Remove track</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="deletePlaylistButton">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>1010</y>
+      <width>181</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete playlist</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

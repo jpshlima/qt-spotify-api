@@ -9,6 +9,7 @@
 #include "Spotify.h"
 #include "playlist.h"
 #include <QInputDialog>
+#include <QMessageBox>
 
 #include <QThread>
 
@@ -237,6 +238,37 @@ void MainWindow::on_removeTrackButton_clicked()
             //qDebug() << trackname;
             QString listItem = trackname + " | " + trackartist + " | " + trackalbum;
             ui->listWidget->addItem(listItem);
+        }
+    }
+}
+
+void MainWindow::on_deletePlaylistButton_clicked()
+{
+    // Primeiro, vamos confirmar se realmente deseja excluir
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Delete playlist", "Are you sure?", QMessageBox::Yes | QMessageBox::No);
+    // Se sim, deleta a playlist
+    if(reply == QMessageBox::Yes)
+    {
+        // Recebe a row da playlist atualmente selecionada
+        int selectedPlaylist = ui->auxListWidget->currentRow();
+        playlistManager.deletePlaylist(selectedPlaylist);
+        // Mostra as playlists já atualizadas
+        ui->auxListWidget->clear();
+        // Inicializa as playlists na tela auxiliar
+        int i=0;
+        if(playlistManager.allPlaylists.isEmpty())
+        {
+            QString playlistEmpty = "No playlists to show";
+            ui->auxListWidget->addItem(playlistEmpty);
+        }
+        else
+        {
+            for(i=0; i<playlistManager.allPlaylists.size();i++)
+            {
+                QString playlistName = playlistManager.allPlaylists[0].playlistName;
+                ui->auxListWidget->addItem(playlistName);
+            }
         }
     }
 }
