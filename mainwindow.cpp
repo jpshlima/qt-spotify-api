@@ -56,6 +56,31 @@ void MainWindow::refreshAuxListWidget()
     }
 }
 
+void MainWindow::showTracksOnScreen(QList<track> trackList)
+{
+    ui->listWidget->clear();
+    // Primeiro, verifica se há alguma track na lista
+    if(trackList.isEmpty())
+    {
+        QString playlistEmpty = "Your playlist is empty";
+        ui->listWidget->addItem(playlistEmpty);
+    }
+    else
+    {
+        // Varrer a lista pra exibir seus itens
+        int i=0;
+        for(i=0; i<trackList.size();i++)
+        {
+            QString trackname = trackList[i].name;
+            QString trackalbum = trackList[i].album;
+            QString trackartist = trackList[i].artist;
+            //qDebug() << trackname;
+            QString listItem = trackname + " | " + trackartist + " | " + trackalbum;
+            ui->listWidget->addItem(listItem);
+        }
+    }
+}
+
 
 void MainWindow::on_iniciarButton_clicked()
 {
@@ -79,40 +104,12 @@ void MainWindow::on_searchButton_clicked()
 
 void MainWindow::on_showResultsButton_clicked()
 {
-    // Primeiro, limpa as telas listWidget e teOutput
-    ui->listWidget->clear();
+    // Primeiro, limpa a tela teOutput
     ui->teOutput->clear();
     // Vamos mostrar o resultado da pesquisa na tela listWidget
     QList<track> results = spotify.getSearch();
     //qDebug() << results.isEmpty();
-    // Varrer a QList obtida com um loop para exibir suas informações
-    int i=0;
-    for(i=0; i<results.size();i++)
-    {
-        // Vamos formatar os dados uteis para exibir
-        QString trackname = results[i].name;
-        QString trackalbum = results[i].album;
-        QString trackartist = results[i].artist;
-        //qDebug() << trackname;
-        QString listItem = trackname + " | " + trackartist + " | " + trackalbum;
-        ui->listWidget->addItem(listItem);
-    }
-}
-
-void MainWindow::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
-{
-    // A track selecionada será adicionada na playlist desejada
-
-    // Primeiro, obtemos a row clicada na tela principal listWidget
-    int row = ui->listWidget->row(item);
-    qDebug() << row;
-    // Criamos o objeto track com as informações selecionadas
-    track selectedTrack = spotify.searchResult[row];
-    qDebug() << selectedTrack.name;
-    // Recebe a row da playlist atualmente selecionada
-    int selectedPlaylist = ui->auxListWidget->currentRow();
-    playlistManager.addTrackToPlaylist(selectedTrack, selectedPlaylist);
-
+    showTracksOnScreen(results);
 }
 
 
@@ -130,7 +127,7 @@ void MainWindow::on_renamePlaylistButton_clicked()
 void MainWindow::on_newPlaylistButton_clicked()
 {
     // Cria uma nova playlist e exibe na tela auxiliar
-    //ui->auxListWidget->clear();
+
     // Usa um InputDialog para obter o nome da nova playlist
     QString playlistName;
     playlistName = QInputDialog::getText(this, "New playlist", "Enter new playlist name");
@@ -146,29 +143,11 @@ void MainWindow::on_newPlaylistButton_clicked()
 
 void MainWindow::on_auxListWidget_itemDoubleClicked(QListWidgetItem *item)
 {
-    ui->listWidget->clear();
+    //ui->listWidget->clear();
     // Double click na playlist para exibir suas tracks na tela principal
     int row = ui->auxListWidget->row(item);
     playlist playlist = playlistManager.allPlaylists[row];
-    // Varrer a QList obtida com um loop
-    if(playlist.playlistTracks.isEmpty())
-    {
-        QString playlistEmpty = "Your playlist is empty";
-        ui->listWidget->addItem(playlistEmpty);
-    }
-    else
-    {
-        int i=0;
-        for(i=0; i<playlist.playlistTracks.size();i++)
-        {
-            QString trackname = playlist.playlistTracks[i].name;
-            QString trackalbum = playlist.playlistTracks[i].album;
-            QString trackartist = playlist.playlistTracks[i].artist;
-            //qDebug() << trackname;
-            QString listItem = trackname + " | " + trackartist + " | " + trackalbum;
-            ui->listWidget->addItem(listItem);
-        }
-    }
+    showTracksOnScreen(playlist.playlistTracks);
 }
 
 void MainWindow::on_addTrackButton_clicked()
@@ -192,7 +171,7 @@ void MainWindow::on_removeTrackButton_clicked()
 
     // Primeiro, obtemos a row selecionada na tela principal listWidget
     int row = ui->listWidget->currentRow();
-    qDebug() << row;
+    //qDebug() << row;
     // Recebe a row da playlist atualmente selecionada
     int selectedPlaylist = ui->auxListWidget->currentRow();
     // Faz a remoção
@@ -200,25 +179,7 @@ void MainWindow::on_removeTrackButton_clicked()
     // Vamos atualizar a tela para mostrar a playlist já atualizada
     ui->listWidget->clear();
     playlist playlist = playlistManager.allPlaylists[selectedPlaylist];
-    // Varrer a QList obtida com um loop
-    if(playlist.playlistTracks.isEmpty())
-    {
-        QString playlistEmpty = "Your playlist is empty";
-        ui->listWidget->addItem(playlistEmpty);
-    }
-    else
-    {
-        int i=0;
-        for(i=0; i<playlist.playlistTracks.size();i++)
-        {
-            QString trackname = playlist.playlistTracks[i].name;
-            QString trackalbum = playlist.playlistTracks[i].album;
-            QString trackartist = playlist.playlistTracks[i].artist;
-            //qDebug() << trackname;
-            QString listItem = trackname + " | " + trackartist + " | " + trackalbum;
-            ui->listWidget->addItem(listItem);
-        }
-    }
+    showTracksOnScreen(playlist.playlistTracks);    
 }
 
 void MainWindow::on_deletePlaylistButton_clicked()

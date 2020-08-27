@@ -19,6 +19,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void refreshAuxListWidget();
+    void showTracksOnScreen(QList<track>);
 
 
 private slots:
@@ -27,8 +28,6 @@ private slots:
     void on_searchButton_clicked();
 
     void on_showResultsButton_clicked();
-
-    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 
     void on_renamePlaylistButton_clicked();
 
