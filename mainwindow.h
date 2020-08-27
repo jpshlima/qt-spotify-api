@@ -18,6 +18,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void refreshAuxListWidget();
 
 
 private slots:
@@ -40,6 +41,7 @@ private slots:
     void on_removeTrackButton_clicked();
 
     void on_deletePlaylistButton_clicked();
+
 
 private:
     Ui::MainWindow *ui;

@@ -28,6 +28,11 @@ void playlist::removeTrack(int index)
     this->playlistTracks.removeAt(index);
 }
 
+QString playlist::getPlaylistName()
+{
+    return playlistName;
+}
+
 /*
 QList<track> playlist::getPlaylist()
 {

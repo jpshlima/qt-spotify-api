@@ -19,15 +19,16 @@ public:
     void removeTrack(int);
     void setPlaylistName(QString);
     //QList<track> getPlaylist();
-    QString playlistName;
+
     QList<track> playlistTracks;
+    QString getPlaylistName();
 
 private slots:
 
 
 
 private:
-
+    QString playlistName;
 
 
 };

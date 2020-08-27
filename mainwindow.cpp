@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     spotify.login();
 
+
 }
 
 
@@ -34,11 +35,10 @@ MainWindow::~MainWindow()
     //delete manager;
 }
 
-void MainWindow::on_iniciarButton_clicked()
+void MainWindow::refreshAuxListWidget()
 {
-    //QString authtoken = spotify.getToken();
-    //ui->teOutput->appendPlainText(authtoken);
-
+    // Mostra as playlists já atualizadas na tela auxiliar
+    ui->auxListWidget->clear();
     // Inicializa as playlists na tela auxiliar
     int i=0;
     if(playlistManager.allPlaylists.isEmpty())
@@ -50,10 +50,19 @@ void MainWindow::on_iniciarButton_clicked()
     {
         for(i=0; i<playlistManager.allPlaylists.size();i++)
         {
-            QString playlistName = playlistManager.allPlaylists[0].playlistName;
+            QString playlistName = playlistManager.allPlaylists[i].getPlaylistName();
             ui->auxListWidget->addItem(playlistName);
         }
     }
+}
+
+
+void MainWindow::on_iniciarButton_clicked()
+{
+    //QString authtoken = spotify.getToken();
+    //ui->teOutput->appendPlainText(authtoken);
+
+    refreshAuxListWidget();
 }
 
 
@@ -114,32 +123,17 @@ void MainWindow::on_renamePlaylistButton_clicked()
     // Recebe a row da playlist atualmente selecionada
     int selectedPlaylist = ui->auxListWidget->currentRow();
     playlistManager.renamePlaylist(playlistName, selectedPlaylist);
-    // Mostra as playlists já atualizadas
-    ui->auxListWidget->clear();
-    // Inicializa as playlists na tela auxiliar
-    int i=0;
-    if(playlistManager.allPlaylists.isEmpty())
-    {
-        QString playlistEmpty = "No playlists to show";
-        ui->auxListWidget->addItem(playlistEmpty);
-    }
-    else
-    {
-        for(i=0; i<playlistManager.allPlaylists.size();i++)
-        {
-            QString playlistName = playlistManager.allPlaylists[0].playlistName;
-            ui->auxListWidget->addItem(playlistName);
-        }
-    }
+    refreshAuxListWidget();
 }
 
 
 void MainWindow::on_newPlaylistButton_clicked()
 {
     // Cria uma nova playlist e exibe na tela auxiliar
-    ui->auxListWidget->clear();
+    //ui->auxListWidget->clear();
     // Usa um InputDialog para obter o nome da nova playlist
-    QString playlistName = QInputDialog::getText(this, "New playlist", "Enter new playlist name");
+    QString playlistName;
+    playlistName = QInputDialog::getText(this, "New playlist", "Enter new playlist name");
     //qDebug() << playlistName;
     // Cria o novo objeto playlist com o nome
     playlist playlist;
@@ -147,22 +141,7 @@ void MainWindow::on_newPlaylistButton_clicked()
     // Insere a nova playlist no container de playlists
     playlistManager.appendPlaylist(playlist);
     //qDebug() << playlistManager.allPlaylists[0].playlistName;
-    // Varrendo o container de playlists para exibir todas na tela auxiliar
-    // obs: TO.DO: um metodo refresh para atualizar o display com playlists
-    int i=0;
-    if(playlistManager.allPlaylists.isEmpty())
-    {
-        QString playlistEmpty = "No playlists to show";
-        ui->auxListWidget->addItem(playlistEmpty);
-    }
-    else
-    {
-        for(i=0; i<playlistManager.allPlaylists.size();i++)
-        {
-            QString playlistName = playlistManager.allPlaylists[0].playlistName;
-            ui->auxListWidget->addItem(playlistName);
-        }
-    }
+    refreshAuxListWidget();
 }
 
 void MainWindow::on_auxListWidget_itemDoubleClicked(QListWidgetItem *item)
@@ -198,10 +177,10 @@ void MainWindow::on_addTrackButton_clicked()
 
     // Primeiro, obtemos a row selecionada na tela principal listWidget
     int row = ui->listWidget->currentRow();
-    qDebug() << row;
+    //qDebug() << row;
     // Criamos o objeto track com as informações selecionadas
     track selectedTrack = spotify.searchResult[row];
-    qDebug() << selectedTrack.name;
+    //qDebug() << selectedTrack.name;
     // Recebe a row da playlist atualmente selecionada
     int selectedPlaylist = ui->auxListWidget->currentRow();
     playlistManager.addTrackToPlaylist(selectedTrack, selectedPlaylist);
@@ -253,22 +232,6 @@ void MainWindow::on_deletePlaylistButton_clicked()
         // Recebe a row da playlist atualmente selecionada
         int selectedPlaylist = ui->auxListWidget->currentRow();
         playlistManager.deletePlaylist(selectedPlaylist);
-        // Mostra as playlists já atualizadas
-        ui->auxListWidget->clear();
-        // Inicializa as playlists na tela auxiliar
-        int i=0;
-        if(playlistManager.allPlaylists.isEmpty())
-        {
-            QString playlistEmpty = "No playlists to show";
-            ui->auxListWidget->addItem(playlistEmpty);
-        }
-        else
-        {
-            for(i=0; i<playlistManager.allPlaylists.size();i++)
-            {
-                QString playlistName = playlistManager.allPlaylists[0].playlistName;
-                ui->auxListWidget->addItem(playlistName);
-            }
-        }
+        refreshAuxListWidget();
     }
 }
