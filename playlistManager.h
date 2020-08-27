@@ -13,17 +13,19 @@ class playlistManager
 {
 
 public:
-    QList<playlist> allPlaylists;
+
     void appendPlaylist(playlist);
-    void addTrackToPlaylist(track, int);
+    void addTrackToPlaylist(track, QString);
     void removeTrackFromPlaylist(int, int);
     void renamePlaylist(QString, int);
     void deletePlaylist(int);
+    QStringList getAllPlaylistsNames();
+    QList<playlist> getAllPlaylists();
 
 private slots:
 
 private:
-
+    QList<playlist> allPlaylists;
 
 
 };

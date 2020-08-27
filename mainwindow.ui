@@ -30,7 +30,7 @@
    <widget class="QPushButton" name="searchButton">
     <property name="geometry">
      <rect>
-      <x>1320</x>
+      <x>1580</x>
       <y>10</y>
       <width>181</width>
       <height>71</height>
@@ -45,7 +45,7 @@
      <rect>
       <x>250</x>
       <y>10</y>
-      <width>1051</width>
+      <width>1311</width>
       <height>71</height>
      </rect>
     </property>
@@ -62,7 +62,7 @@
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>510</x>
       <y>100</y>
       <width>1051</width>
       <height>891</height>
@@ -72,7 +72,7 @@
    <widget class="QPushButton" name="showResultsButton">
     <property name="geometry">
      <rect>
-      <x>1320</x>
+      <x>1580</x>
       <y>100</y>
       <width>181</width>
       <height>81</height>
@@ -85,8 +85,8 @@
    <widget class="QPushButton" name="renamePlaylistButton">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>910</y>
+      <x>150</x>
+      <y>780</y>
       <width>181</width>
       <height>81</height>
      </rect>
@@ -98,8 +98,8 @@
    <widget class="QPushButton" name="newPlaylistButton">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>820</y>
+      <x>150</x>
+      <y>690</y>
       <width>181</width>
       <height>71</height>
      </rect>
@@ -113,7 +113,7 @@
      <rect>
       <x>45</x>
       <y>100</y>
-      <width>191</width>
+      <width>431</width>
       <height>581</height>
      </rect>
     </property>
@@ -121,7 +121,7 @@
    <widget class="QPushButton" name="addTrackButton">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>720</x>
       <y>1000</y>
       <width>191</width>
       <height>71</height>
@@ -134,7 +134,7 @@
    <widget class="QPushButton" name="removeTrackButton">
     <property name="geometry">
      <rect>
-      <x>770</x>
+      <x>1030</x>
       <y>1000</y>
       <width>191</width>
       <height>71</height>
@@ -147,8 +147,8 @@
    <widget class="QPushButton" name="deletePlaylistButton">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>1010</y>
+      <x>150</x>
+      <y>880</y>
       <width>181</width>
       <height>71</height>
      </rect>
