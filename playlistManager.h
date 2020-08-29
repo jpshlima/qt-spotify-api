@@ -22,6 +22,7 @@ public:
     QStringList getAllPlaylistsNames();
     QList<playlist> getAllPlaylists();
     void savePlaylist(playlist);
+    void loadPlaylists();
 
 private slots:
 

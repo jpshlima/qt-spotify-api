@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QDir>
 
 void playlistManager::appendPlaylist(playlist playlist)
 {
@@ -70,7 +71,7 @@ void playlistManager::savePlaylist(playlist playlist)
         QJsonObject trackInfo;
         trackInfo.insert("name", playlist.getPlaylistTracks()[i].getTrackName());
         trackInfo.insert("album", playlist.getPlaylistTracks()[i].getTrackAlbum());
-        trackInfo.insert("artist", playlist.getPlaylistTracks()[i].getTrackArtist());
+        trackInfo.insert("artists", playlist.getPlaylistTracks()[i].getTrackArtist());
         trackInfo.insert("id", playlist.getPlaylistTracks()[i].getTrackId());
         tracks.append(trackInfo);
     }
@@ -87,4 +88,53 @@ void playlistManager::savePlaylist(playlist playlist)
     jsonFile.write(documento.toJson(QJsonDocument::Indented));
     jsonFile.close();
     qDebug() << documento;
+}
+
+void playlistManager::loadPlaylists()
+{
+    // Obtem o path do diretorio atual
+    QString path =  QDir::currentPath();
+    // Cria um objeto Dir
+    QDir dir(path);
+    // Aplica filtros para pesquisar objetos .json
+    // obs: as playlists são salvas em .json
+    QStringList filters;
+    filters << "*.json";
+    dir.setNameFilters(filters);
+    QStringList savedItems = dir.entryList();
+
+    if(!savedItems.isEmpty())
+    {
+        // Para cada item encontrado, vamos criar uma playlist
+        int i=0;
+        int j=0;
+        for(i=0; i<savedItems.size(); i++)
+        {
+            // Vamos ler o conteudo do arquivo
+            QFile loadedFile(savedItems.at(i));
+            loadedFile.open(QFile::ReadOnly);
+            QByteArray fileContent = loadedFile.readAll();
+            // Cria JSON objects para manipular o conteudo
+            QJsonDocument jsonDoc(QJsonDocument::fromJson(fileContent));
+            QJsonObject jsonObj = jsonDoc.object();
+            // Extrai o nome da playlist e cria o objeto playlist
+            QString playlistName = jsonObj["playlist name"].toString();
+            playlist playlist;
+            playlist.setPlaylistName(playlistName);
+
+            // Vamos varrer um JSON array para extrair as tracks
+            QJsonArray tracks = jsonObj["tracks"].toArray();
+            for(j=0; j<tracks.size(); j++)
+            {
+                QJsonObject jsonTrack = tracks[j].toObject();
+                track track;
+                track.setTrackName(jsonTrack["name"].toString());
+                track.setTrackAlbum(jsonTrack["album"].toString());
+                track.setTrackId(jsonTrack["id"].toString());
+                track.setTrackArtist(jsonTrack["artists"].toString());
+                playlist.addTrack(track);
+            }
+            allPlaylists.append(playlist);
+        }
+    }
 }

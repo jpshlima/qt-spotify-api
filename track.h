@@ -25,7 +25,7 @@ public:
     QString getTrackAlbum();
     void setTrackId(QString);
     QString getTrackId();
-    void setTrackArtist(QStringList);
+    void setTrackArtist(QString);
     QString getTrackArtist();
 
 
@@ -37,7 +37,7 @@ private slots:
 private:
     QString trackName;
     QString trackAlbum;
-    QStringList trackArtist;
+    QString trackArtist;
     QString trackId;
     /*
     QString name;

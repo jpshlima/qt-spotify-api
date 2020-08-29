@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     spotify.login();
-
+    playlistManager.loadPlaylists();
 
 }
 

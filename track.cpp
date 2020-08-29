@@ -30,14 +30,14 @@ QString track::getTrackAlbum()
     return this->trackAlbum;
 }
 
-void track::setTrackArtist(QStringList artist)
+void track::setTrackArtist(QString artist)
 {
     this->trackArtist = artist;
 }
 
 QString track::getTrackArtist()
 {
-    QString artist;
+    /*QString artist;
     if(this->trackArtist.size()!=1)
     {
         artist = trackArtist.join(" + ");
@@ -45,8 +45,8 @@ QString track::getTrackArtist()
     else
     {
         artist = this->trackArtist.at(0);
-    }
-    return artist;
+    }*/
+    return this->trackArtist;
 }
 
 void track::setTrackId(QString trackId)
