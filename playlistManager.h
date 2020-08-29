@@ -21,6 +21,7 @@ public:
     void deletePlaylist(int);
     QStringList getAllPlaylistsNames();
     QList<playlist> getAllPlaylists();
+    void savePlaylist(playlist);
 
 private slots:
 

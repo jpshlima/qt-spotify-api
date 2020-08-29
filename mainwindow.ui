@@ -87,8 +87,8 @@
      <rect>
       <x>150</x>
       <y>780</y>
-      <width>181</width>
-      <height>81</height>
+      <width>211</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
@@ -100,7 +100,7 @@
      <rect>
       <x>150</x>
       <y>690</y>
-      <width>181</width>
+      <width>211</width>
       <height>71</height>
      </rect>
     </property>
@@ -148,13 +148,26 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>880</y>
-      <width>181</width>
+      <y>960</y>
+      <width>211</width>
       <height>71</height>
      </rect>
     </property>
     <property name="text">
      <string>Delete playlist</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="savePlaylistButton">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>870</y>
+      <width>211</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save playlist</string>
     </property>
    </widget>
   </widget>

@@ -179,6 +179,7 @@ void MainWindow::on_addTrackButton_clicked()
 
         playlistManager.addTrackToPlaylist(selectedTrack, selectedPlaylist);
     }
+    refreshAuxListWidget();
 }
 
 void MainWindow::on_removeTrackButton_clicked()
@@ -213,4 +214,10 @@ void MainWindow::on_deletePlaylistButton_clicked()
         ui->listWidget->clear();
     }
 
+}
+
+void MainWindow::on_savePlaylistButton_clicked()
+{
+    int row = ui->auxListWidget->currentRow();
+    playlistManager.savePlaylist(playlistManager.getAllPlaylists()[row]);
 }
