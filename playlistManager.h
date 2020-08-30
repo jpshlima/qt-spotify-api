@@ -3,6 +3,8 @@
 
 #include "track.h"
 #include "playlist.h"
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class playlistManager; }
@@ -23,11 +25,13 @@ public:
     QList<playlist> getAllPlaylists();
     void savePlaylist(playlist);
     void loadPlaylists();
+    void playPlaylist(playlist);
 
 private slots:
 
 private:
     QList<playlist> allPlaylists;
+
 
 
 };

@@ -10,8 +10,8 @@
 #include "playlist.h"
 #include <QInputDialog>
 #include <QMessageBox>
-
-#include <QThread>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -24,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     spotify.login();
     playlistManager.loadPlaylists();
+    player = new QMediaPlayer(this);
+    mediaPlaylist = new QMediaPlaylist(this);
 
 }
 
@@ -221,3 +223,26 @@ void MainWindow::on_savePlaylistButton_clicked()
     int row = ui->auxListWidget->currentRow();
     playlistManager.savePlaylist(playlistManager.getAllPlaylists()[row]);
 }
+
+void MainWindow::on_playButton_clicked()
+{
+    int row = ui->auxListWidget->currentRow();
+    playlist playlist = playlistManager.getAllPlaylists()[row];
+    qDebug() << playlist.getPlaylistName();
+    int i=0;
+    for(i=0; i<playlist.getPlaylistTracks().size(); i++)
+    {
+        if(!playlist.getPlaylistTracks()[i].getTrackPreview().isEmpty())
+        {
+            mediaPlaylist->addMedia(QUrl(playlist.getPlaylistTracks()[i].getTrackPreview()));
+            qDebug() << playlist.getPlaylistTracks()[i].getTrackPreview();
+
+        }
+    }
+    mediaPlaylist->setPlaybackMode(QMediaPlaylist::Sequential);
+    mediaPlaylist->setCurrentIndex(0);
+    player->setPlaylist(mediaPlaylist);
+    player->play();
+
+}
+

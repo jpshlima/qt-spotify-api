@@ -86,7 +86,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>780</y>
+      <y>770</y>
       <width>211</width>
       <height>71</height>
      </rect>
@@ -121,7 +121,7 @@
    <widget class="QPushButton" name="addTrackButton">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>570</x>
       <y>1000</y>
       <width>191</width>
       <height>71</height>
@@ -134,7 +134,7 @@
    <widget class="QPushButton" name="removeTrackButton">
     <property name="geometry">
      <rect>
-      <x>1030</x>
+      <x>790</x>
       <y>1000</y>
       <width>191</width>
       <height>71</height>
@@ -148,7 +148,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>960</y>
+      <y>930</y>
       <width>211</width>
       <height>71</height>
      </rect>
@@ -161,13 +161,26 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>870</y>
+      <y>850</y>
       <width>211</width>
       <height>71</height>
      </rect>
     </property>
     <property name="text">
      <string>Save playlist</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="playButton">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>1010</y>
+      <width>211</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Play playlist</string>
     </property>
    </widget>
   </widget>

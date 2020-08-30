@@ -49,13 +49,13 @@ QString track::getTrackArtist()
     return this->trackArtist;
 }
 
-void track::setTrackId(QString trackId)
+void track::setTrackPreview(QString trackPreview)
 {
-    this->trackId = trackId;
+    this->trackPreview = trackPreview;
 }
 
-QString track::getTrackId()
+QString track::getTrackPreview()
 {
-    return this->trackId;
+    return this->trackPreview;
 }
 

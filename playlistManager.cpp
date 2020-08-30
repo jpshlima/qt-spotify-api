@@ -6,6 +6,7 @@
 #include <QJsonDocument>
 #include <QDir>
 
+
 void playlistManager::appendPlaylist(playlist playlist)
 {
     allPlaylists.append(playlist);
@@ -37,6 +38,14 @@ void playlistManager::renamePlaylist(QString newName, int playlistIndex)
 void playlistManager::deletePlaylist(int playlistIndex)
 {
     allPlaylists.removeAt(playlistIndex);
+    // Vamos checar se essa playlist existe localmente para excluir também
+    /*
+     * QString filename = allPlaylists[playlistIndex].getPlaylistName() + ".json";
+    QFile check(filename);
+    if(check.exists())
+    {
+        QFile::moveToTrash foi implementada apenas no Qt 5.15.
+    }*/
 }
 
 QStringList playlistManager::getAllPlaylistsNames()
@@ -72,7 +81,7 @@ void playlistManager::savePlaylist(playlist playlist)
         trackInfo.insert("name", playlist.getPlaylistTracks()[i].getTrackName());
         trackInfo.insert("album", playlist.getPlaylistTracks()[i].getTrackAlbum());
         trackInfo.insert("artists", playlist.getPlaylistTracks()[i].getTrackArtist());
-        trackInfo.insert("id", playlist.getPlaylistTracks()[i].getTrackId());
+        trackInfo.insert("preview_url", playlist.getPlaylistTracks()[i].getTrackPreview());
         tracks.append(trackInfo);
     }
 
@@ -130,7 +139,7 @@ void playlistManager::loadPlaylists()
                 track track;
                 track.setTrackName(jsonTrack["name"].toString());
                 track.setTrackAlbum(jsonTrack["album"].toString());
-                track.setTrackId(jsonTrack["id"].toString());
+                track.setTrackPreview(jsonTrack["preview_url"].toString());
                 track.setTrackArtist(jsonTrack["artists"].toString());
                 playlist.addTrack(track);
             }
@@ -138,3 +147,5 @@ void playlistManager::loadPlaylists()
         }
     }
 }
+
+

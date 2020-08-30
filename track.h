@@ -23,8 +23,8 @@ public:
     QString getTrackName();
     void setTrackAlbum(QString);
     QString getTrackAlbum();
-    void setTrackId(QString);
-    QString getTrackId();
+    void setTrackPreview(QString);
+    QString getTrackPreview();
     void setTrackArtist(QString);
     QString getTrackArtist();
 
@@ -38,7 +38,7 @@ private:
     QString trackName;
     QString trackAlbum;
     QString trackArtist;
-    QString trackId;
+    QString trackPreview;
     /*
     QString name;
     QString album;

@@ -5,6 +5,8 @@
 #include "Spotify.h"
 #include <QNetworkAccessManager>
 #include <QListWidget>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 
 QT_BEGIN_NAMESPACE
@@ -44,10 +46,14 @@ private slots:
 
     void on_savePlaylistButton_clicked();
 
+    void on_playButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Spotify spotify;
     playlistManager playlistManager;
+    QMediaPlayer* player;
+    QMediaPlaylist* mediaPlaylist;
 
 };
 #endif // MAINWINDOW_H

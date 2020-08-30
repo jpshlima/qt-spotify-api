@@ -11,6 +11,7 @@
 #include <QJsonValue>
 #include <QJsonArray>
 
+
 Spotify::Spotify()
 {
 
@@ -104,7 +105,7 @@ void Spotify::searchTrack(QString searchInput)
 
     // Faz a GET request e o connect
     connect(manager, &QNetworkAccessManager::finished,this,&Spotify::trackSearched);
-    QNetworkReply *reply = manager->get(request);
+    manager->get(request);
     //qDebug() << reply;
 
 }
@@ -159,8 +160,8 @@ void Spotify::trackSearched(QNetworkReply* rep)
         track.setTrackArtist(artistNameString);
         track.setTrackAlbum(albumInfo["name"].toString());
         track.setTrackName(temp["name"].toString());
-        track.setTrackId(temp["id"].toString());
-
+        track.setTrackPreview(temp["preview_url"].toString());
+        qDebug() << temp["preview_url"].toString();
         data.append(track);
     }
     this->searchResult = data;
@@ -171,4 +172,5 @@ QList<track> Spotify::getSearch()
 {
     return searchResult;
 }
+
 

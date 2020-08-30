@@ -7,6 +7,7 @@
 #include "playlist.h"
 #include "playlistManager.h"
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Spotify; }
 QT_END_NAMESPACE
@@ -24,6 +25,7 @@ public:
     QList<track> getSearch();
 
 
+
 private slots:
 
     void onFinish(QNetworkReply*);
@@ -33,6 +35,7 @@ private:
     QString token;
     QNetworkAccessManager *manager;
     QList<track> searchResult;
+
 
 };
 
