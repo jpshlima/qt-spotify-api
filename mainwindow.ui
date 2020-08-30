@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Iniciar</string>
+     <string>START</string>
     </property>
    </widget>
    <widget class="QPushButton" name="searchButton">
@@ -206,19 +206,6 @@
     </property>
     <property name="text">
      <string>Preview track</string>
-    </property>
-   </widget>
-   <widget class="QSlider" name="sliderProgress">
-    <property name="geometry">
-     <rect>
-      <x>760</x>
-      <y>1010</y>
-      <width>451</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="pauseButton">

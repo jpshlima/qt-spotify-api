@@ -44,7 +44,7 @@ void playlistManager::deletePlaylist(int playlistIndex)
     QFile check(filename);
     if(check.exists())
     {
-        QFile::moveToTrash foi implementada apenas no Qt 5.15.
+        QFile::moveToTrash foi implementada apenas no Qt 5.15 =/
     }*/
 }
 

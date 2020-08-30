@@ -25,7 +25,6 @@ public:
     QList<track> getSearch();
 
 
-
 private slots:
 
     void onFinish(QNetworkReply*);

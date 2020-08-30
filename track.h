@@ -18,16 +18,22 @@ class track
 public:
     track();
     ~track();
-    //void getTrack(track);
-    void setTrackName(QString);
-    QString getTrackName();
-    void setTrackAlbum(QString);
-    QString getTrackAlbum();
-    void setTrackPreview(QString);
-    QString getTrackPreview();
-    void setTrackArtist(QString);
-    QString getTrackArtist();
 
+    void setTrackName(QString);
+
+    QString getTrackName();
+
+    void setTrackAlbum(QString);
+
+    QString getTrackAlbum();
+
+    void setTrackPreview(QString);
+
+    QString getTrackPreview();
+
+    void setTrackArtist(QString);
+
+    QString getTrackArtist();
 
 
 private slots:
@@ -39,12 +45,7 @@ private:
     QString trackAlbum;
     QString trackArtist;
     QString trackPreview;
-    /*
-    QString name;
-    QString album;
-    QString artist;
-    QString id;
-    */
+
 };
 
 

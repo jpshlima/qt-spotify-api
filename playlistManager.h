@@ -32,8 +32,6 @@ private slots:
 private:
     QList<playlist> allPlaylists;
 
-
-
 };
 
 #endif // PLAYLISTMANAGER_H

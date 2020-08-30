@@ -19,7 +19,6 @@ Spotify::Spotify()
 
 Spotify::~Spotify()
 {
-    //delete token;
     delete manager;
 }
 
@@ -33,17 +32,15 @@ void Spotify::login()
     this->manager = manager;
     QUrl url("https://accounts.spotify.com/api/token");
     QNetworkRequest request(url);
+
     // Configura o header
     QString header = clientId + ":" + clientSecret;
-    //qDebug() << header;
+
     QByteArray ba;
     ba.append(header);
     QString secret = ba.toBase64();
-    //qDebug() << secret;
     QByteArray full_header= "Basic " + ba.toBase64();
-    //qDebug() << full_header;
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-    //request.setHeader(QNetworkRequest::ContentDispositionHeader, full_header);
     request.setRawHeader("Authorization", full_header);
 
     // Configura a query
@@ -61,7 +58,7 @@ void Spotify::onFinish(QNetworkReply* rep)
 {
     // Vamos ler o conteúdo da resposta do primeiro POST
     QByteArray buffer = rep->readAll();
-    //qDebug() << buffer;
+
     // Transforma o que foi lido em QJSON object
     QJsonDocument jsonDoc(QJsonDocument::fromJson(buffer));
     QJsonObject jsonReply = jsonDoc.object();
@@ -69,15 +66,12 @@ void Spotify::onFinish(QNetworkReply* rep)
     // Obtem o token
     QJsonValue access_token = jsonReply.value("access_token");
     this->token = access_token.toString();
-    //qDebug() << access_token;
-
 }
 
 QString Spotify::getToken()
 {
     return token;
 }
-
 
 void Spotify::searchTrack(QString searchInput)
 {
@@ -96,49 +90,30 @@ void Spotify::searchTrack(QString searchInput)
     // Configura a request
     QNetworkRequest request(url);
     QByteArray header = "Bearer " + token.toUtf8();
-    //qDebug() << header;
     request.setRawHeader("Accept", "application/json");
-
-    //request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setRawHeader("Authorization", header);
 
     // Faz a GET request e o connect
     connect(manager, &QNetworkAccessManager::finished,this,&Spotify::trackSearched);
     manager->get(request);
-    //qDebug() << reply;
 
 }
 
 void Spotify::trackSearched(QNetworkReply* rep)
 {
-    /*
-    if(rep->error() == QNetworkReply::NoError)
-    {
-
-        // check http status code
-        int v = rep->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        if(v!=200)
-        {
-            abort();
-            qDebug() << "bad request!";
-        }
-    }
-    */
-
     // Vamos ler o conteúdo da resposta da pesquisa GET
     QByteArray buffer = rep->readAll();
-    //qDebug() << buffer;
+
     // Transforma o que foi lido em QJSON object
     QJsonDocument jsonDoc(QJsonDocument::fromJson(buffer));
     QJsonObject jsonObj = jsonDoc.object();
 
     // Vamos fazer o parsing do JSON obtido para objetos track
     QJsonObject jsonObj2 = jsonObj["tracks"].toObject();
-    //qDebug() << jsonObj;
+
     // Extrai o conteúdo em um array
     QJsonArray array = jsonObj2["items"].toArray();
-    //qDebug() << array;
 
     // Vamos criar uma QList com as tracks
     QList<track> data;
@@ -150,7 +125,9 @@ void Spotify::trackSearched(QNetworkReply* rep)
         QJsonObject temp = array[i].toObject();
         QJsonObject albumInfo = temp["album"].toObject();
         QJsonArray artistArray = temp["artists"].toArray();
+        // Tem vez que o artista da track é um array
         QStringList artistName;
+        // Varrendo o array de artistas
         for(j=0; j<artistArray.size(); j++)
         {
             QJsonObject artistInfo = artistArray[j].toObject();
@@ -161,11 +138,9 @@ void Spotify::trackSearched(QNetworkReply* rep)
         track.setTrackAlbum(albumInfo["name"].toString());
         track.setTrackName(temp["name"].toString());
         track.setTrackPreview(temp["preview_url"].toString());
-        qDebug() << temp["preview_url"].toString();
         data.append(track);
     }
     this->searchResult = data;
-
 }
 
 QList<track> Spotify::getSearch()

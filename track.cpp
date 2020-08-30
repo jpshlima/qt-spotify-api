@@ -7,7 +7,7 @@ track::track()
 
 track::~track()
 {
-    //delete track;
+
 }
 
 void track::setTrackName(QString name)
@@ -37,15 +37,6 @@ void track::setTrackArtist(QString artist)
 
 QString track::getTrackArtist()
 {
-    /*QString artist;
-    if(this->trackArtist.size()!=1)
-    {
-        artist = trackArtist.join(" + ");
-    }
-    else
-    {
-        artist = this->trackArtist.at(0);
-    }*/
     return this->trackArtist;
 }
 

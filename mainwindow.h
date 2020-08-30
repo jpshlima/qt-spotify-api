@@ -43,20 +43,18 @@ private slots:
 
     void on_deletePlaylistButton_clicked();
 
-
     void on_savePlaylistButton_clicked();
 
     void on_playButton_clicked();
 
     void on_previewTrackButton_clicked();
 
-    //void on_sliderProgress_valueChanged(int value);
-
     void on_pauseButton_clicked();
 
     void on_stopButton_clicked();
 
     void on_resumeButton_clicked();
+
 
 private:
     Ui::MainWindow *ui;
