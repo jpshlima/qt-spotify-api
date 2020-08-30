@@ -286,3 +286,27 @@ void MainWindow::on_previewTrackButton_clicked()
         player->play();
     }
 }
+
+/*
+void MainWindow::on_sliderProgress_valueChanged(int value)
+{
+    ui->sliderProgress->setValue(value);
+}
+*/
+void MainWindow::on_pauseButton_clicked()
+{
+    player->pause();
+    ui->resumeButton->setEnabled(true);
+}
+
+void MainWindow::on_stopButton_clicked()
+{
+    player->stop();
+    mediaPlaylist->clear();
+    ui->resumeButton->setDisabled(true);
+}
+
+void MainWindow::on_resumeButton_clicked()
+{
+    player->play();
+}
