@@ -48,6 +48,8 @@ private slots:
 
     void on_playButton_clicked();
 
+    void on_previewTrackButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Spotify spotify;

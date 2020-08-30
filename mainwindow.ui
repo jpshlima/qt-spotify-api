@@ -70,6 +70,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="showResultsButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>1580</x>
@@ -119,11 +122,14 @@
     </property>
    </widget>
    <widget class="QPushButton" name="addTrackButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>1000</y>
-      <width>191</width>
+      <x>1580</x>
+      <y>480</y>
+      <width>181</width>
       <height>71</height>
      </rect>
     </property>
@@ -132,11 +138,14 @@
     </property>
    </widget>
    <widget class="QPushButton" name="removeTrackButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>790</x>
-      <y>1000</y>
-      <width>191</width>
+      <x>1580</x>
+      <y>570</y>
+      <width>181</width>
       <height>71</height>
      </rect>
     </property>
@@ -181,6 +190,22 @@
     </property>
     <property name="text">
      <string>Play playlist</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="previewTrackButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>1580</x>
+      <y>380</y>
+      <width>181</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Preview track</string>
     </property>
    </widget>
   </widget>
